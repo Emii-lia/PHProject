@@ -3,6 +3,8 @@
 # dependencies
 /node_modules
 /src/backend/var.php
+/src/jpgraph
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
