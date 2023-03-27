@@ -32,7 +32,7 @@ You can't use this project if you are not a member of the group because our data
 After cloning the repository you need to install the node package for tailwindcss
 
 ``` bash
-    cd church
+    cd PHProject
     npm install
 
 ```
