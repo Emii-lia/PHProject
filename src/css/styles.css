@@ -1,0 +1,12 @@
+html, body{
+    background-color: #f0f2f0;
+    height: 100vh;
+}
+a{
+    text-decoration: none;
+}
+input[type=number]{
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+}
