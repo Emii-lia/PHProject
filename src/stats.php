@@ -106,7 +106,7 @@
                     </div>
                     <div class="mb-24 flex flex-col space-y-8">
                         <div class="mb-20">
-                            <h2 class='text-[#363636] font-semibold text-3xl' >Plot</h2>
+                            <h2 class='text-[#363636] font-semibold text-3xl' >Graphical statistics</h2>
                         </div>  
                         <div class="flex flex-col  items-center">
                             <div class="flex flex-col space-y-6 h-[40%]">

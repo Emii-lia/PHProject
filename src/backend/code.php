@@ -20,9 +20,11 @@ if(isset($_POST['save_church_btn'])){
     $query_execute = $query_run->execute($data);
 
     if($query_execute){
+        $_SESSION['ch_message'] = "Successfully executed";
         header('Location: ../index.php');
         exit(0);
     }else{
+        $_SESSION['ch_err_message'] = "Failed to execute";
         header('Location: ../index.php');
         exit(0);
     }
