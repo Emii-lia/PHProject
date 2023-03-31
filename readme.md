@@ -18,7 +18,7 @@ This is a PHP project so we obviously use PHP to develop this website along with
 
 ## Installation and requirements (Avalaible for group members only)
 
-In order to use this website you obviously have to clone the repository (here)[https://github.com/Emii-lia/PHProject]
+In order to use this website you obviously have to clone the repository [here](https://github.com/Emii-lia/PHProject)
 
 Or type the following command on your terminal
 
