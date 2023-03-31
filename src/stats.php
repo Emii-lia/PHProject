@@ -18,7 +18,7 @@
         }
     </style>
 
-    <title>Document</title>
+    <title>Church</title>
 </head>
 <body>
     <div class="pr-20 relative h-full">
@@ -111,17 +111,10 @@
                         <div class="flex flex-col  items-center">
                             <div class="flex flex-col space-y-6 h-[40%]">
                                 <div class="">
-                                    <h2 class='text-[#363636] text-2xl' >Incomes Motif Pie Chart</h2>
+                                    <h2 class='text-[#363636] text-2xl' >Cash Movement Per Month</h2>
                                 </div>  
                                 
                                 <img src="plot.php?id=<?= $id_eglise?>" alt="" class="">
-                            </div>
-                            <div class="flex flex-col space-y-6 h-[40%] mt-10">
-                                <div class="">
-                                    <h2 class='text-[#363636] text-2xl' >Costs Motif Pie Chart</h2>
-                                </div>  
-                                
-                                <img src="plot2.php?id=<?= $id_eglise?>" alt="" class="">
                             </div>
                         </div>
                     </div>

@@ -18,7 +18,7 @@
             background-color: #A66D58;
         }
     </style>
-    <title>Document</title>
+    <title>Church</title>
 </head>
 <body>
     <div class="pr-20 relative h-full">
@@ -73,17 +73,16 @@
                                     $search = strtolower($_POST['search']);
                                     $search_query = "SELECT * FROM SORTIE WHERE LOWER(motif) LIKE :motif AND ideglise = :id_eglise ORDER BY dateSortie DESC";
                                     $search = '%' . $search . '%';
-                                    $statement = $conn->prepare($search_query);
                                     $data = [":motif" => $search, ":id_eglise" => $id_eglise];
-                                    $statement->execute($data);
+                                    $statement = $conn->prepare($search_query);
                                 }
                                 else{
                                     $query = "SELECT * FROM SORTIE WHERE ideglise = :id_eglise ORDER BY dateSortie DESC";
                                     $data = [":id_eglise" => $id_eglise];
                                     $statement = $conn->prepare($query);
-                                    $statement->execute($data);
-
+                                    
                                 }
+                                $statement->execute($data);
                                 $result = $statement->fetchAll(PDO::FETCH_OBJ);
                                 if($result){
                                     foreach($result as $row){
@@ -105,7 +104,24 @@
                             ?>
                         </tbody>
                     </table>
+                    <div class="flex flex-row justify-end pr-5 mb-8">
+                        <?php
+                            $total_query = "SELECT SUM(montantSortie) AS total FROM SORTIE WHERE ideglise=:ideglise";
+                            $ids = [":ideglise" => $id_eglise,];
+                            if(isset($_POST['search_entree'])){
+                                $search = strtolower($_POST['search']);
+                                $total_query = "SELECT SUM(montantSortie) AS total FROM SORTIE WHERE LOWER(motif) LIKE :motif AND ideglise = :ideglise";
+                                $search = '%' . $search . '%';
+                                $ids = [":motif" => $search, ":ideglise" => $id_eglise];
+                            }
+                            $total_query_run = $conn->prepare($total_query);
+                            $total_query_run->execute($ids);
+                            $result = $total_query_run->fetch();
+                        ?>
+                            <h2 class="text-3xl text-[#024059] ">Total: <span class="text-[#353535]">Ar <?= $result['total']?></span></h2>
+                    </div>
                 </div>
+                
             </div>
         </div>
         <?php include('./frontend/add_cost_modal.php');?>

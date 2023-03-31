@@ -11,10 +11,10 @@
         <script src="script/ch_modal_script.js" defer></script>
         <script src="script/mess_modal_script.js" defer></script>
 
-        <title>Document</title>
+        <title>Church</title>
     </head>
     <body>
-        <div class="pr-20 relative h-full">
+        <div class="pr-20 relative h-full ind">
             <?php if (isset($_SESSION['message'])) : ?>
                         <h5 class="alert alert-success"><?php echo $_SESSION['message']; ?></h5>
                     <?php unset($_SESSION['message']);
