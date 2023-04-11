@@ -11,16 +11,16 @@
                 <form action="./../backend/code.php" method="post" class="flex flex-col justify-around">
                     <div class="mb-8">
                         <label for="" class="text-[#353535]">Date of the incoming:</label>
-                        <input type="date" class="mt-2 rounded-full shadow-md p-3 w-full" name="dateEntre" id="" placeholder="Enter the date of incoming">
+                        <input type="date" class="mt-2 rounded-full shadow-md p-3 w-full" name="dateEntre" id="" placeholder="Enter the date of incoming" value="<?php echo date('Y-m-d');?>">
                     </div>
                     <div class="mb-8">
                         <label for="" class="text-[#353535]">Reason: </label>
-                        <input type="text" class="mt-2 rounded-full shadow-md p-3 w-full" name="motif" id="" placeholder="Enter the motif">
+                        <input type="text" class="mt-2 rounded-full shadow-md p-3 w-full" name="motif" id="" placeholder="Enter the motif" maxlength="120" required>
                     </div>
                     <div class="mb-4">
                         <label for="" class="text-[#353535]">Value: </label>
-                        <input type="number" class="mt-2 rounded-full shadow-md p-3 w-full" name="montantEntre" id="" placeholder="Enter the value of the income">
-                        <input type="radio" class="hidden" name="id" checked value="<?= $_GET['id'] ?>">
+                        <input type="number" class="mt-2 rounded-full shadow-md p-3 w-full" name="montantEntre" id="" placeholder="Enter the value of the income" required>
+                        <input type="radio" class="hidden" name="id" checked value="<?= test_input($_GET['id']) ?>">
                     </div>
                     <div class=" px-4 py-3 mt-4">
                         <button

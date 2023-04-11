@@ -1,5 +1,6 @@
 <?php session_start(); 
     require('./backend/dbcon.php');
+    require('./function.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,7 +43,7 @@
                     <?php
 
                         if(isset($_GET['id'])){
-                            $id_eglise = $_GET['id'];
+                            $id_eglise = test_input($_GET['id']);
                             $titre_design = "SELECT * FROM EGLISE WHERE ideglise = :id_eglise";
                             $set_titre = $conn->prepare($titre_design);
                             $titre = [":id_eglise" => $id_eglise];
@@ -68,9 +69,10 @@
                         </thead>
                         <tbody>
                             <?php
-                                $id_eglise = $_GET['id'];
-                                if(isset($_POST['search_entree'])){
-                                    $search = strtolower($_POST['search']);
+                                $id_eglise = test_input($_GET['id']);
+                                if(isset($_POST['search_entree']) && isset($_POST['search'])){
+                                    $search = test_input($_POST['search']);
+                                    $search = strtolower($search);
                                     $search_query = "SELECT * FROM SORTIE WHERE LOWER(motif) LIKE :motif AND ideglise = :id_eglise ORDER BY dateSortie DESC";
                                     $search = '%' . $search . '%';
                                     $data = [":motif" => $search, ":id_eglise" => $id_eglise];

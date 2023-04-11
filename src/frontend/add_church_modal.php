@@ -11,11 +11,11 @@
                 <div class="mt-2 px-7 py-3 flex flex-col justify-around">
                         <div class="mb-8">
                             <label for="" class="text-[#353535]">Identifiant</label>
-                            <input type="text" class="mt-2 rounded-full shadow-md p-3 w-full" name="ideglise" id="ideglise" placeholder="Enter the ID">
+                            <input type="text" class="mt-2 rounded-full shadow-md p-3 w-full" name="ideglise" id="ideglise" placeholder="Enter the ID" required>
                         </div>
                         <div class="mb-4">
                             <label for="" class="text-[#353535]">Name of the church: </label>
-                            <input type="text" class="mt-2 rounded-full shadow-md p-3 w-full" name="design" id="church" placeholder="Enter the name of the church">
+                            <input type="text" class="mt-2 rounded-full shadow-md p-3 w-full" name="design" id="church" placeholder="Enter the name of the church" required>
                         </div>
                 </div>
                 <div class=" px-4">

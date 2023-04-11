@@ -2,12 +2,14 @@
 session_start();
 
 require('dbcon.php');
+require('../function.php');
 
 //Church
 
-if(isset($_POST['save_church_btn'])){
-    $design = $_POST['design'];
-    $ideglise = $_POST['ideglise'];
+if(isset($_POST['save_church_btn']) && isset($_POST['design']) && isset($_POST['ideglise'])){
+
+    $design = test_input($_POST['design']);
+    $ideglise = test_input($_POST['ideglise']);
 
     $query = "INSERT INTO EGLISE (design, ideglise) VALUES (:design, :ideglise)";
     $query_run = $conn->prepare($query);
@@ -33,11 +35,11 @@ if(isset($_POST['save_church_btn'])){
 
 //Income
 
-if(isset($_POST['save_income_btn'])){
-    $motif = $_POST['motif'];
-    $montant_entree = $_POST['montantEntre'];
+if(isset($_POST['save_income_btn']) && isset($_POST['motif']) && isset($_POST['montantEntre']) && (isset($_POST['dateEntre']) && $_POST['dateEntre'] <= date('Y-m-d')) && isset($_POST['id'])){
+    $motif = test_input($_POST['motif']);
+    $montant_entree = test_input($_POST['montantEntre']);
     $date_entree = $_POST['dateEntre'];
-    $id_eglise = $_POST['id'];
+    $id_eglise = test_input($_POST['id']);
     $query = "INSERT INTO ENTREE (ideglise, motif, montantEntre, dateEntre) VALUES (:ideglise, :motif, :montantEntre, :dateEntre)";
     $query_run = $conn->prepare($query);
     
@@ -77,10 +79,15 @@ if(isset($_POST['save_income_btn'])){
         exit(0);
     }
 
+}else {
+    // If informations don't matchs the conditions
+    $_SESSION['message'] = "Failed";
+    header("Location: ../index.php");
+    exit(0);
 }
 
 //Cost
-if(isset($_POST['save_cost_btn'])){
+if(isset($_POST['save_cost_btn']) && isset($_POST['motif']) && isset($_POST['montantSortie']) && (isset($_POST['dateSortie']) && $_POST['dateSortie'] <= date('Y-m-d')) && isset($_POST['id'])){
     $motif = $_POST['motif'];
     $montant_sortie = $_POST['montantSortie'];
     $date_sortie = $_POST['dateSortie'];
@@ -137,6 +144,11 @@ if(isset($_POST['save_cost_btn'])){
             exit(0);
     }
 
+}else {
+    // If informations don't matchs the conditions
+    $_SESSION['message'] = "Failed";
+    header("Location: ../index.php");
+    exit(0);
 }
 
 //income_update

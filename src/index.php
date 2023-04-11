@@ -1,5 +1,6 @@
 <?php session_start(); 
     require('./backend/dbcon.php');
+    require('./function.php');
 ?>
 <html lang="en">
     <head>
@@ -114,7 +115,8 @@
                         </form>
                         <?php
                             if(isset($_POST['search_church'])){
-                                $search = strtolower($_POST['search']);
+                                $search = test_input($_POST['search']);
+                                $search = strtolower($search);
                                 $search_query = "SELECT * FROM EGLISE WHERE LOWER(design) LIKE :design";
                                 $search = '%' . $search . '%';
                                 $search_query_run = $conn->prepare($search_query);

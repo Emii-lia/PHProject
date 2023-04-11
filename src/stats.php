@@ -160,7 +160,7 @@
                                         <?php
                                             
                                                 $id_eglise = $_POST['id'];
-                                                $mvt_entree_query = "SELECT motif, dateEntre, montantEntre FROM ENTREE WHERE ideglise=:id_eglise AND dateEntre BETWEEN :date_deb AND :date_fin ORDER BY dateEntre DESC";
+                                                $mvt_entree_query = "SELECT dateEntre, motif, montantEntre FROM ENTREE WHERE ideglise=:id_eglise AND dateEntre BETWEEN :date_deb AND :date_fin ORDER BY dateEntre DESC";
                                                 $mvt_entree_query_run = $conn->prepare($mvt_entree_query);
                                                 $data = [
                                                     ":date_deb" => $date_debut,
@@ -168,16 +168,16 @@
                                                     ":id_eglise" => $id_eglise
                                                 ];
                                                 $mvt_entree_query_run->execute($data);
-                                                $result = $mvt_entree_query_run->fetchAll(PDO::FETCH_OBJ);
+                                                $result_inc_filtred = $mvt_entree_query_run->fetchAll(PDO::FETCH_ASSOC);
                                                 
                                                 
-                                                if($result){
-                                                    foreach($result as $row){
+                                                if($result_inc_filtred){
+                                                    foreach($result_inc_filtred as $row){
                                         ?>
                                                         <tr class="border-b border-slate-300 odd:bg-[#e6e6e6] even:bg-[#F0F2F0]">
-                                                            <td class="p-3 text-center"><?= $row->dateEntre ?></td>
-                                                            <td class="p-3 text-center"><?= $row->motif ?></td>
-                                                            <td class="p-3 text-center"><?= $row->montantEntre ?></td>  
+                                                            <td class="p-3 text-center"><?= $row['dateEntre'] ?></td>
+                                                            <td class="p-3 text-center"><?= $row['motif'] ?></td>
+                                                            <td class="p-3 text-center"><?= $row['montantEntre'] ?></td>  
                                                         </tr> 
                                         <?php 
                                                     }
@@ -196,11 +196,11 @@
                                             ];
                                             $get_montant_query_run->execute($date);
                                             $result = $get_montant_query_run->fetch();
-                                            $total = $result['total'];
+                                            $total_inc_filtred = $result['total'];
 
                                         
                                     ?>                                    
-                                    <h2 class="text-[#024059] text-xl">Total Income: <span class="text-[#363636] text-2xl"> Ar <?= $total ?></span></h2>
+                                    <h2 class="text-[#024059] text-xl">Total Income: <span class="text-[#363636] text-2xl"> Ar <?= $total_inc_filtred ?></span></h2>
                                 </div>                       
                             </div>
                             <div class="mt-10">
@@ -217,7 +217,7 @@
                                     </thead> 
                                     <tbody>
                                         <?php
-                                            $mvt_sortie_query = "SELECT motif, dateSortie, montantSortie FROM SORTIE WHERE ideglise=:ideglise AND dateSortie BETWEEN :date_deb AND :date_fin ORDER BY dateSortie DESC";
+                                            $mvt_sortie_query = "SELECT dateSortie, motif, montantSortie FROM SORTIE WHERE ideglise=:ideglise AND dateSortie BETWEEN :date_deb AND :date_fin ORDER BY dateSortie DESC";
                                             $mvt_sortie_query_run = $conn->prepare($mvt_sortie_query);
                                             $data = [
                                                 ":date_deb" => $date_debut,
@@ -225,17 +225,17 @@
                                                 "ideglise" => $id_eglise,
                                             ];
                                             $mvt_sortie_query_run->execute($data);
-                                            $result = $mvt_sortie_query_run->fetchAll(PDO::FETCH_OBJ);
+                                            $result_cst_filtred = $mvt_sortie_query_run->fetchAll(PDO::FETCH_ASSOC);
                                             
                                             
-                                            if($result){
-                                                foreach($result as $row){
+                                            if($result_cst_filtred){
+                                                foreach($result_cst_filtred as $row){
                                                     
                                         ?>
                                             <tr class="border-b border-slate-300 odd:bg-[#e6e6e6] even:bg-[#F0F2F0]">
-                                                <td class="p-3 text-center"><?= $row->dateSortie ?></td>
-                                                <td class="p-3 text-center"><?= $row->motif ?></td>
-                                                <td class="p-3 text-center"><?= $row->montantSortie ?></td>  
+                                                <td class="p-3 text-center"><?= $row['dateSortie'] ?></td>
+                                                <td class="p-3 text-center"><?= $row['motif'] ?></td>
+                                                <td class="p-3 text-center"><?= $row['montantSortie'] ?></td>  
                                             </tr>                                             
                                         <?php
                                                 }
@@ -254,17 +254,27 @@
                                     ];
                                     $get_montant_query_run->execute($date);
                                     $result = $get_montant_query_run->fetch();
-                                    $total = $result['total'];
+                                    $total_cst_filtred = $result['total'];
                                  
                                     ?>
-                                    <h2 class="text-[#024059] text-xl">Total Costs: <span class="text-[#363636] text-2xl"> Ar <?= $total ?></span></h2>
+                                    <h2 class="text-[#024059] text-xl">Total Costs: <span class="text-[#363636] text-2xl"> Ar <?= $total_cst_filtred ?></span></h2>
                                 </div>                        
                             </div>
                         </div>
-                        <form action="">
-                            <input type="radio" checked name="" class="hidden" value="" id="">
+                        <form action="generate_pdf.php" method="POST" target="_blank">
+                            <?php 
+                            $dataPDF = [
+                                'debut' => $date_debut,
+                                'fin' => $date_fin,
+                                'data_inc' => $result_inc_filtred,
+                                'total_inc' => $total_inc_filtred,
+                                'data_cst' => $result_cst_filtred,
+                                'total_cst' => $total_cst_filtred
+                            ];
+                            ?>
+                            <input type="hidden" name="dataPDF" value="<?php echo htmlspecialchars(json_encode($dataPDF))?>">
                             <div class="mt-10 flex flex-col items-end">
-                                <button type="button" class="bg-[#4F758C] px-4 py-2 rounded-md text-[#f0f2f0]">Generate PDF</button>
+                                <button type="submit" class="bg-[#4F758C] px-4 py-2 rounded-md text-[#f0f2f0]" name="generatePDF">Generate PDF</button>
                             </div>
                         </form>
                         <?php

@@ -1,5 +1,6 @@
 <?php session_start(); 
     require('./backend/dbcon.php');
+    require('./function.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,7 +43,7 @@
                 <div class="">
                     <?php
                         if(isset($_GET['id'])){
-                            $id_eglise = $_GET['id'];
+                            $id_eglise = test_input($_GET['id']);
                             $titre_design = "SELECT * FROM EGLISE WHERE ideglise = :id_eglise";
                             $set_titre = $conn->prepare($titre_design);
                             $titre = [":id_eglise" => $id_eglise];
@@ -69,9 +70,10 @@
                         <tbody>
                             <?php
                                 if(isset($_GET['id'])){
-                                    $id_eglise = $_GET['id'];
-                                    if(isset($_POST['search_entree'])){
-                                        $search = strtolower($_POST['search']);
+                                    $id_eglise = test_input($_GET['id']);
+                                    if(isset($_POST['search_entree']) && isset($_POST['search'])){
+                                        $search = test_input($_POST['search']);
+                                        $search = strtolower($search);
                                         $search_query = "SELECT * FROM ENTREE WHERE LOWER(motif) LIKE :motif AND ideglise = :id_eglise ORDER BY dateEntre DESC";
                                         $search = '%' . $search . '%';
                                         $statement = $conn->prepare($search_query);
@@ -112,8 +114,9 @@
                         <?php
                             $total_query = "SELECT SUM(montantEntre) AS total FROM ENTREE WHERE ideglise=:ideglise";
                             $ids = [":ideglise" => $id_eglise,];
-                            if(isset($_POST['search_entree'])){
-                                $search = strtolower($_POST['search']);
+                            if(isset($_POST['search_entree']) && isset($_POST['search'])){
+                                $search = test_input($_POST['search']);
+                                $search = strtolower($search);
                                 $total_query = "SELECT SUM(montantEntre) AS total FROM ENTREE WHERE LOWER(motif) LIKE :motif AND ideglise = :ideglise";
                                 $search = '%' . $search . '%';
                                 $ids = [":motif" => $search, ":ideglise" => $id_eglise];
