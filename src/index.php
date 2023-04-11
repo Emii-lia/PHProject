@@ -11,11 +11,15 @@
         <link rel="stylesheet" href="./css/styles.css">
         <script src="script/ch_modal_script.js" defer></script>
 
-        <title>Church</title>
+        <title>Chur-charity</title>
     </head>
     <body>
         <div class="pr-20 relative h-full ind">
-            <?php if (isset($_SESSION['ch_message'])) : ?>
+            <?php if (isset($_SESSION['ch_message'])) : 
+                $tag = "Successful!";
+                $color = "green";
+    
+                ?>
                     <!--modal content-->
                 <div
                     class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full"
@@ -26,10 +30,10 @@
                     >
                         <div class="mt-3 text-center">
                             <div
-                                class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100"
+                                class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-<?=$color?>-100"
                             >
                                 <svg
-                                    class="h-6 w-6 text-green-600"
+                                    class="h-6 w-6 text-<?=$color?>-600"
                                     fill="none"
                                     stroke="currentColor"
                                     viewBox="0 0 24 24"
@@ -43,16 +47,16 @@
                                     ></path>
                                 </svg>
                             </div>
-                            <h3 class="text-lg leading-6 font-medium text-gray-900">Successful!</h3>
+                            <h3 class="text-lg leading-6 font-medium text-gray-900"><?= $tag ?></h3>
                             <div class="mt-2 px-7 py-3">
                                 <p class="text-sm text-gray-500">
-                                    Church has been successfully registered!
+                                    <?= $_SESSION['ch_message'] ?>
                                 </p>
                             </div>
                             <div class="items-center px-4 py-3">
                                 <button
                                     id="ok-btn"
-                                    class="px-4 py-2 bg-green-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300"
+                                    class="px-4 py-2 bg-<?=$color?>-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-<?= $color?>-600 focus:outline-none focus:ring-2 focus:ring-<?=$color?>-300"
                                 >
                                     OK
                                 </button>
@@ -88,7 +92,81 @@
 
                     <?php unset($_SESSION['ch_message']);
                     endif; 
+                    if (isset($_SESSION['ch_err_message'])) : 
+                        $tag = "Error!";
+                        $color = "red";
                     ?>
+                        <div
+                    class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full"
+                    id="successMessage"
+                    >
+                    <div
+                        class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white"
+                    >
+                        <div class="mt-3 text-center">
+                            <div
+                                class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-<?=$color?>-100"
+                            >
+                                <svg
+                                    class="h-6 w-6 text-<?=$color?>-600"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M5 13l4 4L19 7"
+                                    ></path>
+                                </svg>
+                            </div>
+                            <h3 class="text-lg leading-6 font-medium text-gray-900"><?= $tag ?></h3>
+                            <div class="mt-2 px-7 py-3">
+                                <p class="text-sm text-gray-500">
+                                    <?= $_SESSION['ch_message'] ?>
+                                </p>
+                            </div>
+                            <div class="items-center px-4 py-3">
+                                <button
+                                    id="ok-btn"
+                                    class="px-4 py-2 bg-<?=$color?>-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-<?= $color?>-600 focus:outline-none focus:ring-2 focus:ring-<?=$color?>-300"
+                                >
+                                    OK
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <script>
+                    let modal = document.getElementById("successMessage");
+
+                    // let btn = document.getElementById("add_ch_btn");
+
+                    let button = document.getElementById("ok-btn");
+
+                    // We want the modal to open when the Open button is clicked
+
+                        // We want the modal to close when the OK button is clicked
+                    button.onclick = function() {
+                    modal.style.display = "none";
+                    }
+                    // The modal will close when the user clicks anywhere outside the modal
+                    window.onclick = function(event) {
+                        if (event.target == modal) {
+                            modal.style.display = "none";
+                        }
+                    }
+                    modal.onclick = function(event) {
+                        if (event.target == modal) {
+                            modal.style.display = "none";
+                        }
+                    }
+                </script>
+            <?php unset($_SESSION['ch_err_message']);
+            endif; 
+            ?>
             <div class="flex flex-row items-start h-full">
                 <div class="w-[20%] fixed pt-10  bg-[#D9CBBF] h-[100vh]">
                     <div class=" flex flex-col items-start m-0 shadow-xl h-[100%]">
@@ -98,7 +176,7 @@
                 <div class="w-[80%] flex flex-col h-[100vh] pl-52 ml-52">
                     <div class="flex flex-row justify-between  py-14 w-[100%]">
                         <div class="">
-                            <h2 class="text-3xl w-[100%] text-[#A66D58] font-bold mb-8">Church</h2>
+                            <h2 class="text-3xl w-[100%] text-[#A66D58] font-bold mb-8">Chur-charity</h2>
                             <h2 class="text-4xl w-[50%]">Financial Stat Report And Management Website Application For Church</h2>
                         </div>
                         <div class="w-[40%] flex flex-col justify-start items-start mt-16">

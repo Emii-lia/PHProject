@@ -4,13 +4,13 @@
 	id="my-modal"
 >
     <div
-        class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white"
+        class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-[#fdfdfd]"
     >
             <h3 class="leading-6 text-center text-[#024059] text-xl font-bold">Adding new church</h3>
             <form method="post" action="./../backend/code.php" class="flex flex-col justify-around">
                 <div class="mt-2 px-7 py-3 flex flex-col justify-around">
                         <div class="mb-8">
-                            <label for="" class="text-[#353535]">Identifiant</label>
+                            <label for="" class="text-[#353535]">Identifiant: </label>
                             <input type="text" class="mt-2 rounded-full shadow-md p-3 w-full" name="ideglise" id="ideglise" placeholder="Enter the ID" required>
                         </div>
                         <div class="mb-4">

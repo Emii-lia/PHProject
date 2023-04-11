@@ -62,10 +62,10 @@ $graph->SetScale("textlin");
 $graph->SetShadow();
 
 // Titres
-$graph->title->Set("Mouvement de caisse par mois");
-$graph->xaxis->title->Set("Mois");
+$graph->title->Set("Cash movement per month");
+$graph->xaxis->title->Set("Month");
 $graph->xaxis->SetTickLabels($mois);
-$graph->yaxis->title->Set("Montant (Ar)");
+$graph->yaxis->title->Set("Value (Ar)");
 $graph->yaxis->title->SetMargin(50);
 $graph->SetMargin(100,100,100,100);
 
@@ -88,9 +88,9 @@ $solde_bar->value->Show();
 // Légende
 $graph->legend->SetPos(0.5, 0.98, "center", "bottom");
 $graph->legend->SetColumns(3);
-$entrees_bar->SetLegend("Entrées");
-$sorties_bar->SetLegend("Sorties");
-$solde_bar->SetLegend("Solde restante");
+$entrees_bar->SetLegend("Incomes");
+$sorties_bar->SetLegend("Outcomes");
+$solde_bar->SetLegend("Rests");
 
 // Affichage du graphique
 $graph->Stroke();

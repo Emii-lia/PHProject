@@ -24,6 +24,153 @@
 <body>
     <div class="pr-20 relative h-full">
         <div class="flex flex-row items-start h-full">
+        <?php if (isset($_SESSION['out_message'])) : 
+                $tag = "Successful!";
+                $color = "green";
+    
+                ?>
+                    <!--modal content-->
+                <div
+                    class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full"
+                    id="successMessage"
+                >
+                    <div
+                        class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white"
+                    >
+                        <div class="mt-3 text-center">
+                            <div
+                                class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-<?=$color?>-100"
+                            >
+                                <svg
+                                    class="h-6 w-6 text-<?=$color?>-600"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M5 13l4 4L19 7"
+                                    ></path>
+                                </svg>
+                            </div>
+                            <h3 class="text-lg leading-6 font-medium text-gray-900"><?= $tag ?></h3>
+                            <div class="mt-2 px-7 py-3">
+                                <p class="text-sm text-gray-500">
+                                    <?= $_SESSION['out_message'] ?>
+                                </p>
+                            </div>
+                            <div class="items-center px-4 py-3">
+                                <button
+                                    id="ok-btn"
+                                    class="px-4 py-2 bg-<?=$color?>-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-<?= $color?>-600 focus:outline-none focus:ring-2 focus:ring-<?=$color?>-300"
+                                >
+                                    OK
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <script>
+                    let modal = document.getElementById("successMessage");
+
+                    // let btn = document.getElementById("add_out_btn");
+
+                    let button = document.getElementById("ok-btn");
+
+                    // We want the modal to open when the Open button is clicked
+
+                        // We want the modal to close when the OK button is clicked
+                    button.onclick = function() {
+                    modal.style.display = "none";
+                    }
+                    // The modal will close when the user clicks anywhere outside the modal
+                    window.onclick = function(event) {
+                        if (event.target == modal) {
+                            modal.style.display = "none";
+                        }
+                    }
+                    modal.onclick = function(event) {
+                        if (event.target == modal) {
+                            modal.style.display = "none";
+                        }
+                    }
+                </script>
+
+                    <?php unset($_SESSION['out_message']);
+                    endif; 
+                    if (isset($_SESSION['out_err_message'])) : 
+                        $tag = "Error!";
+                        $errcolor = "orange";
+                    ?>
+                        <div
+                    class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full"
+                    id="successMessage"
+                    >
+                    <div
+                        class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white"
+                    >
+                        <div class="mt-3 text-center">
+                            <div
+                                class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                                <g transform="translate(0,-1036.3622)">
+                                    <path style="fill:#da4453;fill-opacity:1;stroke:none" 
+                                        d="m 7,1038.3622 0,8.0001 2,0 0,-8.0001 -2,0 z m 0,10 0,2 2,0 0,-2 -2,0 z" 
+                                        id="rect4158"
+                                        />
+                                </g>
+                                </svg>
+
+                            </div>
+                            <h3 class="text-lg leading-6 font-medium text-gray-900"><?= $tag ?></h3>
+                            <div class="mt-2 px-7 py-3">
+                                <p class="text-sm text-gray-500">
+                                    <?= $_SESSION['out_err_message'] ?>
+                                </p>
+                            </div>
+                            <div class="items-center px-4 py-3">
+                                <button
+                                    id="ok-btn"
+                                    class="px-4 py-2 bg-red-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300"
+                                >
+                                    OK
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <script>
+                    let modal = document.getElementById("successMessage");
+
+                    // let btn = document.getElementById("add_out_btn");
+
+                    let button = document.getElementById("ok-btn");
+
+                    // We want the modal to open when the Open button is clicked
+
+                        // We want the modal to close when the OK button is clicked
+                    button.onclick = function() {
+                    modal.style.display = "none";
+                    }
+                    // The modal will close when the user clicks anywhere outside the modal
+                    window.onclick = function(event) {
+                        if (event.target == modal) {
+                            modal.style.display = "none";
+                        }
+                    }
+                    modal.onclick = function(event) {
+                        if (event.target == modal) {
+                            modal.style.display = "none";
+                        }
+                    }
+                </script>
+            <?php unset($_SESSION['out_err_message']);
+            endif; 
+            ?>
             <?php
                 include('./frontend/nav.php');
             ?>

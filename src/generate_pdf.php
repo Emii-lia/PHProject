@@ -105,6 +105,6 @@ if (isset($_POST['generatePDF'])) {
     $pdf->AddPage();
     $pdf->MouvementCaisse(array('Date', 'Motif', 'Montant (Ar)'), $data_inc, $total_inc, 'Entree');
     $pdf->MouvementCaisse(array('Date', 'Motif', 'Montant (Ar)'), $data_cst, $total_cst, 'Sortie');
-    $pdf->Output('curch.pdf','I');
+    $pdf->Output('church.pdf','I');
 }
 ?>
