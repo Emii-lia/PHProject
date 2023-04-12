@@ -87,7 +87,7 @@
                                     $total_cst = $result['total'];
                                 ?>                                
                                 <h2 class='text-[#f0f2f0]'>Ar <?= $total_cst?></h2>
-                                <h3 class='text-[#f2f2f2]'>Costs</h3>
+                                <h3 class='text-[#f2f2f2]'>Expenses</h3>
                             </div>
                             <?php
                                 
@@ -205,12 +205,12 @@
                             </div>
                             <div class="mt-10">
                                 <div class="mb-8 mt-12">
-                                    <h2 class="text-[#363636] text-2xl flex flex-row">Cost Cash Movement: <span class="w-[60%] text-center"><?= $date_debut?> to <?= $date_fin?></span></h2>
+                                    <h2 class="text-[#363636] text-2xl flex flex-row">Expense Cash Movement: <span class="w-[60%] text-center"><?= $date_debut?> to <?= $date_fin?></span></h2>
                                 </div>
                                 <table class="table-auto border-collapse rounded-lg w-full ml-12">
                                     <thead>
                                         <tr class="border-b border-gray-300">
-                                            <th class="p-3 text-[#024059]">Cost Date</th>
+                                            <th class="p-3 text-[#024059]">Expense Date</th>
                                             <th class="p-3 text-[#024059]">Motif</th>
                                             <th class="p-3 text-[#024059]">Montant</th>
                                         </tr>

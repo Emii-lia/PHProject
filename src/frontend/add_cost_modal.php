@@ -6,11 +6,11 @@
     <div
         class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white"
     >
-        <h3 class="leading-6 text-center text-[#024059] text-xl font-bold">Adding new Costs</h3>
+        <h3 class="leading-6 text-center text-[#024059] text-xl font-bold">Adding new Expense</h3>
         <div class="mt-2 px-7 py-3">
             <form action="./../backend/code.php" method="post" class="flex flex-col justify-around">
                 <div class="mb-8">
-                    <label for="" class="text-[#353535]">Date of the outcoming:</label>
+                    <label for="" class="text-[#353535]">Date of the expense:</label>
                     <input type="date" class="mt-2 rounded-full shadow-md p-3 w-full" name="dateSortie" id="" placeholder="Enter the date of outcoming" value="<?php echo date('Y-m-d');?>">
                 </div>
                 <div class="mb-8">

@@ -209,7 +209,7 @@
                     <table class="table-auto border-collapse rounded-lg w-full mb-12">
                         <thead>
                             <tr class="border-b border-gray-300">
-                                <th class="p-3 text-[#024059]">Costs Date</th>
+                                <th class="p-3 text-[#024059]">Expenses Date</th>
                                 <th class="p-3 text-[#024059]">Motif</th>
                                 <th class="p-3 text-[#024059]">Montant</th>
                             </tr>

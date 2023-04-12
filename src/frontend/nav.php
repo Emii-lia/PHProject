@@ -13,7 +13,7 @@
             }
         ?>
         <div class="inc py-6 pl-10 text-lg font-bold cursor-pointer w-[100%] hover:bg-[#A66D58AA]"><a class="flex flex-row items-center gap-4 text-[#343434] active:text-[#343434]" href="./income.php?id=<?= $id_eglise ?>"><img class="" src="./assets/icons/paid.svg" alt=""> Income</a></div>
-        <div class="cst py-6 pl-10 text-lg font-bold cursor-pointer w-[100%] hover:bg-[#A66D58AA]"><a class="flex flex-row items-center gap-4 text-[#343434] active:text-[#343434]" href="./costs.php?id=<?= $id_eglise ?>"><img class="" src="./assets/icons/costs.svg" alt=""> Costs</a></div>
+        <div class="cst py-6 pl-10 text-lg font-bold cursor-pointer w-[100%] hover:bg-[#A66D58AA]"><a class="flex flex-row items-center gap-4 text-[#343434] active:text-[#343434]" href="./costs.php?id=<?= $id_eglise ?>"><img class="" src="./assets/icons/costs.svg" alt=""> Expenses</a></div>
         <div class="stat py-6 pl-10 text-lg font-bold cursor-pointer w-[100%] hover:bg-[#A66D58AA]"><a class="flex flex-row items-center gap-4 text-[#343434] active:text-[#343434]" href="./stats.php?id=<?= $id_eglise ?>"><img class="" src="./assets/icons/stat.svg" alt=""> Statistics</a></div>
     </div>
 </div>

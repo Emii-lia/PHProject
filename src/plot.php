@@ -89,7 +89,7 @@ $solde_bar->value->Show();
 $graph->legend->SetPos(0.5, 0.98, "center", "bottom");
 $graph->legend->SetColumns(3);
 $entrees_bar->SetLegend("Incomes");
-$sorties_bar->SetLegend("Outcomes");
+$sorties_bar->SetLegend("Expenses");
 $solde_bar->SetLegend("Rests");
 
 // Affichage du graphique
